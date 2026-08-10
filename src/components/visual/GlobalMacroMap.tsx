@@ -16,7 +16,7 @@ export function GlobalMacroMap() {
               <span className="gradient-text-signal">WORLDWIDE.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Hover any country to see its flag colors and demo active-client counts.
+              Hover any country to see its flag colors and active-client counts.
             </p>
           </div>
         </SectionReveal>

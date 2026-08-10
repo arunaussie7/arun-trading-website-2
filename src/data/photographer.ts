@@ -41,9 +41,7 @@ This is a practice dedicated to building trading tools and automated systems for
     youtube: 'https://youtube.com/@arunchitragar',
     twitter: 'https://x.com/arunchitragar',
   },
-  portraitImage:
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1080&q=80',
-  /** Drop your transparent PNG (no background) here: public/images/hero-portrait.png */
+  portraitImage: '/images/hero-portrait.png',
   heroPortraitImage: '/images/hero-portrait.png',
   founderVideo: '/videos/founder.mp4',
   founderStats: [

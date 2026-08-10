@@ -157,7 +157,6 @@ export function InteractiveWorldMap() {
             ) : (
               <div className="mt-2 text-sm text-muted-foreground">No Active Users</div>
             )}
-            <div className="mt-2 text-[10px] text-muted-foreground/70">Demo data</div>
           </motion.div>
         )}
       </AnimatePresence>

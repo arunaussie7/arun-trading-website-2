@@ -21,9 +21,11 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <span className="flex size-9 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 font-display text-sm font-bold text-primary">
-                AC
-              </span>
+              <img
+                src="/images/logo.png"
+                alt={`${photographerInfo.name} logo`}
+                className="size-10 rounded-lg object-cover"
+              />
               <div>
                 <div className="font-display font-semibold">{photographerInfo.name}</div>
                 <div className="lab-label mt-1">Trade Automator · Creator · Hustler</div>

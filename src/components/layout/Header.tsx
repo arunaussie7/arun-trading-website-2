@@ -34,9 +34,11 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-[4.5rem] md:px-8 lg:px-10">
         <Link to="/" className="group flex items-center gap-3">
-          <span className="relative flex size-9 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 font-display text-sm font-bold text-primary shadow-glow">
-            AC
-          </span>
+          <img
+            src="/images/logo.png"
+            alt={`${photographerInfo.name} logo`}
+            className="size-10 rounded-lg object-cover transition duration-300 group-hover:opacity-90 md:size-11"
+          />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[15px] font-semibold tracking-tight">
               {photographerInfo.name}
