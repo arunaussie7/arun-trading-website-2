@@ -4,8 +4,7 @@ import { photographerInfo } from '@/data/photographer';
 import { SectionReveal } from '@/components/lab/SectionReveal';
 
 /**
- * Capital Club layout — size & alignment matched.
- * Drop a transparent PNG (no background) into photographerInfo.portraitImage.
+ * Capital Club–style join banner: smooth dark → olive-gold gradient, cutout on the right.
  */
 export function FounderSection() {
   return (
@@ -15,11 +14,11 @@ export function FounderSection() {
           <div
             className="relative overflow-hidden rounded-lg"
             style={{
+              // Muted dusty rose — hides light cutout fringe better than bright baby pink
               background:
-                'linear-gradient(90deg, #050505 0%, #0a0a0a 36%, #1c1d14 62%, #5c5528 100%)',
+                'linear-gradient(90deg, #050505 0%, #0a0a0a 38%, #1a1416 60%, #5C4548 100%)',
             }}
           >
-            {/* Fixed horizontal banner proportions */}
             <div className="relative flex min-h-[360px] flex-col lg:min-h-[400px] lg:flex-row lg:items-stretch">
               {/* Left: badge → headline → copy → CTA */}
               <div className="relative z-10 flex flex-1 flex-col justify-center px-8 py-12 md:px-14 md:py-14 lg:max-w-[58%] lg:px-16 lg:py-16">
@@ -46,7 +45,7 @@ export function FounderSection() {
                 <div className="mt-8">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 rounded-md bg-[#F2D024] px-6 py-3.5 text-[13px] font-bold uppercase tracking-[0.06em] text-black transition hover:brightness-105"
+                    className="inline-flex items-center gap-2 rounded-md bg-[#C9A3A8] px-6 py-3.5 text-[13px] font-bold uppercase tracking-[0.06em] text-black transition hover:brightness-105"
                   >
                     Become a member
                     <ArrowRight className="size-4" strokeWidth={2.5} />
@@ -54,12 +53,12 @@ export function FounderSection() {
                 </div>
               </div>
 
-              {/* Right: cutout portrait — transparent PNG, bottom-anchored */}
-              <div className="relative h-[300px] shrink-0 lg:h-auto lg:w-[42%]">
+              {/* Right: cutout over soft pink side — isolated so pink never blends into the subject */}
+              <div className="relative isolate h-[300px] shrink-0 lg:h-auto lg:w-[42%]">
                 <img
                   src={photographerInfo.portraitImage}
                   alt={photographerInfo.name}
-                  className="pointer-events-none absolute bottom-0 left-1/2 h-[110%] w-auto max-w-[none] -translate-x-1/2 object-contain object-bottom lg:left-auto lg:right-0 lg:translate-x-0 lg:h-[108%]"
+                  className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-[110%] w-auto max-w-[none] -translate-x-1/2 object-contain object-bottom mix-blend-normal lg:left-auto lg:right-0 lg:translate-x-0 lg:h-[108%]"
                 />
               </div>
             </div>

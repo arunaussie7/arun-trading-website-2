@@ -40,7 +40,11 @@ export interface Project {
   tags?: string[];
   /** Headline metric badge */
   badge?: string;
-  /** Dummy one-time price in INR (display only) */
+  /** One-time price in USD (display) */
+  priceUsd?: number;
+  /** Struck-through compare-at price in USD */
+  compareAtUsd?: number;
+  /** Legacy INR price (optional) */
   price?: number;
   /** Access label under price, e.g. "Lifetime Access" */
   accessLabel?: string;

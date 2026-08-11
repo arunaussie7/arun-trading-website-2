@@ -54,7 +54,7 @@ export const defaultBRollItems: BRollItem[] = [
     title: 'Global Focus & Travel',
     category: 'EXPLORATION',
     type: 'image',
-    src: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
+    src: '/images/global-focus-travel.jpg',
   },
   {
     id: '6',
@@ -75,7 +75,7 @@ export const defaultBRollItems: BRollItem[] = [
     title: 'Behind The Scenes',
     category: 'CASUAL',
     type: 'image',
-    src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+    src: '/images/behind-the-scenes.jpg',
   },
 ];
 

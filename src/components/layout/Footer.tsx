@@ -28,7 +28,7 @@ export function Footer() {
               />
               <div>
                 <div className="font-display font-semibold">{photographerInfo.name}</div>
-                <div className="lab-label mt-1">Trade Automator · Creator · Hustler</div>
+                <div className="lab-label mt-1">Trade Automator · Content Creator</div>
               </div>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground leading-relaxed">

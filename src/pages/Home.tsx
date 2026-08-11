@@ -31,7 +31,7 @@ import { BRollMarquee } from '@/components/about/BRollMarquee';
 import { FounderSection } from '@/components/about/FounderSection';
 import { GlobalMacroMap } from '@/components/visual/GlobalMacroMap';
 
-const identityLine = 'Trade automator | Content creator | Bodybuilder | Hustler.';
+const identityLine = 'Trade automator | Content creator.';
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);

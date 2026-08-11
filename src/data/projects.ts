@@ -50,24 +50,27 @@ export const projects: Project[] = [
     year: '2025',
     slug: 'confluence-strategy',
     coverImage: COVERS.confluence,
-    badge: 'Smart Money',
-    tagline: 'Multi-confirmation institutional setups with disciplined risk control.',
+    badge: 'Dual Confirm',
+    tagline: 'Trendline breaks + volumetric BOS/CHoCH — both must fire on the same bar.',
     description:
-      'The Confluence Strategy combines trendline breakout confirmation, market structure analysis, and volumetric order flow to identify high-probability institutional trade setups. Instead of relying on a single indicator, it waits for multiple confirmations before entering a trade, reducing false signals and improving entry quality. Built with predefined risk management and configurable risk-to-reward settings, it provides a disciplined approach for traders seeking consistency in trending markets.',
+      'Confluence Strategy: Trendlines + Volumetric Order Flow. Entries only when a trendline break signal and a volumetric structure break (BOS/CHoCH) confirm on the same bar. Volumetric order blocks render volume-profile rows with POC highlighting; trendlines use ATR, Stdev, or Linreg slope. Risk is mechanical — structural stop with tick buffer, minimum SL padding, and configurable R:R (default 2.0) with automatic strategy exits and CONF LONG / CONF SHORT labels.',
     keyFeatures: [
-      'Trendline Breakouts',
-      'BOS & CHoCH Detection',
-      'Volumetric Order Flow',
-      'Smart Money Logic',
-      'Automatic TP & SL',
-      'Configurable Risk Management',
+      'Dual confirmation: trendline + volumetric break',
+      'BOS & CHoCH structure labels',
+      'Volumetric order blocks with volume profile',
+      'POC (point of control) highlighting',
+      'ATR / Stdev / Linreg trendline slope',
+      'Configurable R:R (default 2.0)',
+      'Structural SL + min SL padding',
+      'Auto strategy entry & exit',
     ],
-    bestMarkets: ['XAUUSD'],
-    chartType: 'Heikin Ashi',
-    timeframes: ['30 Minutes', '45 Minutes'],
+    bestMarkets: ['XAUUSD', 'Indices', 'FX'],
+    chartType: 'Overlay',
+    timeframes: ['Intraday', 'Swing'],
     platform: 'TradingView',
-    tradingStyles: ['Smart Money', 'Trend Following', 'Swing Trading'],
-    price: 4999,
+    tradingStyles: ['Smart Money', 'Trend Following', 'Confluence'],
+    priceUsd: 104,
+    compareAtUsd: 299,
     accessLabel: 'Lifetime Access',
   }),
   project({
@@ -77,25 +80,27 @@ export const projects: Project[] = [
     year: '2025',
     slug: 'volume-orderflow-strategy',
     coverImage: COVERS.volume,
-    badge: 'Order Flow',
-    tagline: 'Institutional volume, structure, and liquidity mapped into clear entries.',
+    badge: 'LIVE',
+    tagline: 'Manipulation raid + structure break — trap logic with volumetric order blocks.',
     description:
-      'The Volume Orderflow Strategy is built around institutional market behavior by combining volumetric order flow, market structure breaks, and liquidity manipulation detection. It identifies high-conviction trade setups using BOS, CHoCH, volume profiles, and order blocks while filtering weaker market conditions. Designed for price action traders, it provides structured entries with predefined Stop Loss and Take Profit management.',
+      'Volumetric Order Flow Structure Strategy. Maps institutional behavior with order blocks, 15-row volume profiles, and POC. Liquidity manipulation bubbles flag raids above/below active blocks; trades fire only when bullish/bearish manipulation is followed by a confirming BOS or CHoCH break. Stops anchor to recent swing high/low, exits use configurable R:R, and TP/SL projection lines stay on chart while the trade is active.',
     keyFeatures: [
-      'Volume Order Flow',
-      'Order Blocks',
-      'BOS & CHoCH',
-      'Liquidity Sweeps',
-      'Volume Profile',
-      'Smart Money Concepts',
-      'Automatic TP & SL',
+      'Volumetric order blocks & profiles',
+      'BOS & CHoCH structure breaks',
+      'Liquidity manipulation bubbles',
+      'Trap entry: manip + break confirmation',
+      'Swing-anchored stop loss',
+      'Configurable R:R',
+      'TP/SL projection lines',
+      'Overlap filtering for cleaner blocks',
     ],
-    bestMarkets: ['XAUUSD'],
-    chartType: 'Heikin Ashi',
-    timeframes: ['30 Minutes', '45 Minutes'],
+    bestMarkets: ['XAUUSD', 'Indices', 'FX'],
+    chartType: 'Overlay',
+    timeframes: ['Intraday', 'Swing'],
     platform: 'TradingView',
-    tradingStyles: ['Order Flow', 'Smart Money', 'Swing Trading'],
-    price: 4999,
+    tradingStyles: ['Order Flow', 'Smart Money', 'Liquidity'],
+    priceUsd: 100,
+    compareAtUsd: 259,
     accessLabel: 'Lifetime Access',
   }),
   project({
@@ -108,7 +113,7 @@ export const projects: Project[] = [
     badge: 'Scalping',
     tagline: 'Nadaraya-Watson envelope scalping with ATR-based risk control.',
     description:
-      'The NWA Scalping Strategy is designed for fast-paced intraday trading using the Nadaraya-Watson Envelope to identify high-probability reversal opportunities. Combined with ATR-based dynamic risk management, it adapts to changing market volatility while providing disciplined entries and exits. It is ideal for traders looking to capture short-term momentum in the Forex market.',
+      'The NWA Scalping Strategy is designed for fast-paced intraday trading using the Nadaraya-Watson Envelope to identify high-probability reversal opportunities. Combined with ATR-based dynamic risk management, it adapts to changing market volatility while providing disciplined entries and exits.',
     keyFeatures: [
       'Nadaraya-Watson Envelope',
       'ATR Stop Loss',
@@ -132,27 +137,51 @@ export const projects: Project[] = [
     year: '2025',
     slug: 'orb-strategy',
     coverImage: COVERS.orb,
-    badge: 'Breakout',
-    tagline: 'Opening range breakouts for Nifty & BankNifty with intraday controls.',
+    badge: 'India Indices',
+    tagline: 'Opening Range Breakout Pro — built for Nifty & BankNifty session logic.',
     description:
-      'The ORB Strategy is built specifically for Nifty and BankNifty Futures & Options traders using the 5-minute timeframe. It captures opening range breakouts with predefined risk management, automatic break-even protection, and intraday square-off logic. The strategy focuses on high-momentum opportunities during the opening session while maintaining disciplined execution through rule-based entries and exits.',
+      'Opening Range Breakout Pro Strategy, tuned for Nifty and BankNifty with Asia/Kolkata timezone. Captures the opening candle’s high/low as the range, then trades breakouts with optional entry-on-close. One long and one short opportunity per day. Stop sits on the opposite side of the range; targets use configurable R:R (default 3.0) with intermediate TP levels, live SL/TP lines, and clear BUY/SELL labels while the position is open.',
     keyFeatures: [
-      'Opening Range Detection',
-      'Breakout Confirmation',
-      'Automatic Break-even',
-      'Risk-to-Reward Management',
-      'One Trade Per Day',
-      'Auto Square-off',
+      'Opening range high/low capture',
+      'Asia/Kolkata session timing',
+      'Built for Nifty & BankNifty',
+      'Entry on bar close option',
+      'One long + one short per day',
+      'Opposite-range stop loss',
+      'Multi-level TP (default R:R 3.0)',
+      'Live TP/SL lines & labels',
     ],
     bestMarkets: ['Nifty', 'BankNifty'],
     chartType: 'Candlestick',
-    timeframes: ['5 Minutes'],
+    timeframes: ['Opening session', 'Intraday'],
     platform: 'TradingView',
-    tradingStyles: ['Breakout', 'Intraday', 'Momentum Trading'],
+    tradingStyles: ['Breakout', 'Intraday', 'F&O'],
     segment: 'Futures & Options',
-    price: 4999,
+    priceUsd: 99,
+    compareAtUsd: 199,
     accessLabel: 'Lifetime Access',
   }),
+];
+
+/** USD → INR rate ($100 = ₹9,544.55) */
+export const USD_TO_INR = 95.4455;
+
+export function usdToInr(usd: number) {
+  return Math.round(usd * USD_TO_INR * 100) / 100;
+}
+
+export function formatInr(amount: number) {
+  return amount.toLocaleString('en-IN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+/** Pricing-page tiers (Confluence, Volume Orderflow, ORB) */
+export const pricingStrategies = [
+  projects.find((p) => p.slug === 'confluence-strategy')!,
+  projects.find((p) => p.slug === 'volume-orderflow-strategy')!,
+  projects.find((p) => p.slug === 'orb-strategy')!,
 ];
 
 export const getProjectBySlug = (slug: string) => projects.find((p) => p.slug === slug);
@@ -162,7 +191,7 @@ export const getProjectsByCategory = (category: string) =>
     ? projects
     : projects.filter((p) => p.categories.includes(category as ProjectCategory));
 
-export const getFeaturedProjects = () => projects;
+export const getFeaturedProjects = () => pricingStrategies;
 
 export const getAdjacentProjects = (currentSlug: string) => {
   const i = projects.findIndex((p) => p.slug === currentSlug);

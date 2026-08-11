@@ -50,11 +50,6 @@ export default function ProjectDetail() {
     return <Navigate to="/404" replace />;
   }
 
-  const priceLabel =
-    typeof project.price === 'number'
-      ? `₹${project.price.toLocaleString('en-IN')}`
-      : '₹4,999';
-
   const categoryLabels = project.categories.map((c) => CATEGORY_LABELS[c]);
 
   return (
@@ -125,8 +120,15 @@ export default function ProjectDetail() {
 
             <div className="rounded-2xl border border-border bg-card/50 p-6 md:p-7">
               <div className="lab-label">Price</div>
-              <div className="mt-2 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-                {priceLabel}
+              <div className="mt-2 flex flex-wrap items-baseline gap-3">
+                <div className="font-display text-4xl font-semibold tracking-tight text-[#D4AF37] md:text-5xl">
+                  ${project.priceUsd ?? 99}
+                </div>
+                {typeof project.compareAtUsd === 'number' && (
+                  <div className="font-display text-xl text-muted-foreground line-through md:text-2xl">
+                    ${project.compareAtUsd}
+                  </div>
+                )}
               </div>
               <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
                 <span>{project.accessLabel || 'Lifetime Access'}</span>

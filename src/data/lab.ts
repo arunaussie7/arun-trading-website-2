@@ -103,5 +103,4 @@ export const roles = [
   'EA Specialist',
   'Content Creator',
   'Entrepreneur',
-  'Bodybuilder',
 ];

@@ -1,63 +1,89 @@
-import { useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
-import { INDICATOR_FILTERS, getProjectsByCategory } from '@/data/projects';
-import { IndicatorCard } from '@/components/portfolio/IndicatorCard';
+import { pricingStrategies } from '@/data/projects';
+import { StrategyPricingCard } from '@/components/portfolio/StrategyPricingCard';
+import { CustomIndicatorForm } from '@/components/portfolio/CustomIndicatorForm';
 import { LabBackground } from '@/components/lab/LabBackground';
 import { SectionReveal, SectionLabel } from '@/components/lab/SectionReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { cn } from '@/lib/utils';
+
+const TIER_LABELS = ['Tier 1', 'Tier 2', 'Tier 3'] as const;
 
 export default function Portfolio() {
-  const [active, setActive] = useState('all');
-  const list = useMemo(() => getProjectsByCategory(active), [active]);
-
   return (
     <>
       <SEOHead
-        title="Indicators & Tools"
-        description="Premium TradingView strategies — Confluence, Volume Orderflow, NWA Scalping, and ORB — engineered by Arun Chitragar."
+        title="Indicators & Strategies"
+        description="Confluence Strategy, Volume Orderflow Strategy, and ORB Strategy for Nifty & BankNifty — plus custom TradingView indicator builds by Arun Chitragar."
       />
 
       <section className="relative overflow-hidden gradient-lab">
         <LabBackground variant="dense" />
         <div className="relative z-10 mx-auto max-w-7xl px-5 pb-14 pt-10 text-center md:px-8 lg:px-10">
           <SectionReveal>
-            <SectionLabel className="justify-center">ALGORITHMIC TOOLKIT</SectionLabel>
-            <h1 className="mx-auto mt-5 max-w-4xl font-display text-5xl font-semibold uppercase tracking-tight md:text-6xl lg:text-7xl">
-              STRUCTURED EDGE. <span className="gradient-text-signal">ZERO NOISE.</span>
+            <div className="inline-flex items-center rounded-full border border-primary/40 bg-primary/10 px-3 py-1">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
+                Pricing
+              </span>
+            </div>
+            <h1 className="mx-auto mt-5 max-w-4xl font-display text-4xl font-semibold uppercase tracking-tight md:text-5xl lg:text-6xl">
+              Choose Your <span className="text-primary">Trading Journey</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-              Four premium TradingView strategies — confluence, volume orderflow, NWA scalping, and ORB.
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+              Select the strategy that matches your markets — or request a custom indicator built
+              around your rules.
             </p>
           </SectionReveal>
         </div>
       </section>
 
-      <section className="px-5 py-12 md:px-8 md:py-16 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 flex flex-wrap justify-center gap-2">
-            {INDICATOR_FILTERS.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setActive(f.id)}
-                className={cn(
-                  'rounded-xl border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] transition',
-                  active === f.id
-                    ? 'border-primary/50 bg-primary/15 text-primary shadow-glow'
-                    : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground'
-                )}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+      {/* Strategy pricing tiers */}
+      <section className="px-5 pb-16 md:px-8 md:pb-20 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3 lg:items-stretch">
+          {pricingStrategies.map((project, i) => (
+            <StrategyPricingCard
+              key={project.id}
+              project={project}
+              tierLabel={TIER_LABELS[i]}
+              featured={i === 1}
+              index={i}
+            />
+          ))}
+        </div>
+      </section>
 
-          <motion.div layout className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {list.map((p, i) => (
-              <IndicatorCard key={p.id} project={p} index={i} />
-            ))}
-          </motion.div>
+      {/* Custom indicator form */}
+      <section
+        id="custom-indicator"
+        className="border-t border-border/40 px-5 py-16 md:px-8 md:py-24 lg:px-10"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-12 lg:gap-14">
+          <SectionReveal className="lg:col-span-5">
+            <SectionLabel>Custom Build</SectionLabel>
+            <h2 className="mt-3 font-display text-3xl font-semibold uppercase tracking-tight md:text-4xl">
+              Need a <span className="gradient-text-signal">custom indicator?</span>
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+              Already trade a manual system and want it coded on TradingView, MT4, or MT5? Send the
+              rules — entries, exits, filters, and markets — and I’ll scope a build around your exact
+              logic.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+              <li className="flex gap-2">
+                <span className="text-primary">▸</span> TradingView Pine strategies & indicators
+              </li>
+              <li className="flex gap-2">
+                <span className="text-primary">▸</span> MT4 / MT5 tools & Expert Advisors
+              </li>
+              <li className="flex gap-2">
+                <span className="text-primary">▸</span> Risk rules, alerts, and session filters
+              </li>
+            </ul>
+          </SectionReveal>
+
+          <SectionReveal delay={0.08} className="lg:col-span-7">
+            <div className="rounded-2xl border border-border/70 bg-card/40 p-6 shadow-elevated md:p-8">
+              <CustomIndicatorForm />
+            </div>
+          </SectionReveal>
         </div>
       </section>
     </>

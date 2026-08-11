@@ -37,7 +37,7 @@ export default function About() {
               <span className="gradient-text-signal">TRADER ALWAYS.</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Trade automator | Content creator | Bodybuilder | Hustler.
+              Trade automator | Content creator.
             </p>
           </SectionReveal>
         </div>
