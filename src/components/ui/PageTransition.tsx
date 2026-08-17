@@ -10,10 +10,10 @@ export function PageTransition({ children }: PageTransitionProps) {
 
   return (
     <motion.div
-      initial={reduce ? false : { opacity: 0, y: 16, filter: 'blur(4px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      exit={reduce ? undefined : { opacity: 0, y: -12, filter: 'blur(4px)' }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      initial={reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={reduce ? undefined : { opacity: 0 }}
+      transition={{ duration: 0.12, ease: 'easeOut' }}
     >
       {children}
     </motion.div>

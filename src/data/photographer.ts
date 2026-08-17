@@ -38,7 +38,7 @@ This is a practice dedicated to building trading tools and automated systems for
     instagram: 'https://www.instagram.com/the.arunchitragar',
     linkedin: 'https://www.linkedin.com/in/arun-chitragar/',
     discord: 'https://discord.gg/YnQvjQSq6',
-    youtube: 'https://youtube.com/@arunchitragar',
+    youtube: 'https://www.youtube.com/@Arun.chitragar',
     twitter: 'https://x.com/arunchitragar',
   },
   /** Join the Network banner + About */

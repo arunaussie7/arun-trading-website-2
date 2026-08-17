@@ -22,6 +22,7 @@ import { Input } from '@/components/ui/input';
 import { MagneticButton } from '@/components/lab/MagneticButton';
 import { cn } from '@/lib/utils';
 import { formatInr, usdToInr } from '@/data/projects';
+import { submitSiteForm } from '@/lib/submitForm';
 import type { Project } from '@/types';
 
 const purchaseSchema = z.object({
@@ -131,22 +132,25 @@ export function PurchaseDialog({ open, onOpenChange, project }: Props) {
   const onSubmit = async (data: PurchaseFormValues) => {
     setIsSubmitting(true);
     try {
-      await new Promise((r) => setTimeout(r, 900));
-      console.log('[Purchase submission]', {
-        indicator: project.title,
-        slug: project.slug,
-        priceUsd,
-        amountInr,
-        name: data.name,
-        email: data.email,
-        contactNumber: data.contactNumber,
-        screenshot: {
-          name: data.screenshot.name,
-          type: data.screenshot.type,
-          size: data.screenshot.size,
+      await submitSiteForm(
+        {
+          form: 'Indicator Purchase',
+          indicator: project.title,
+          slug: project.slug,
+          priceUsd: `$${priceUsd}`,
+          amountInr: `₹${formatInr(amountInr)}`,
+          name: data.name,
+          email: data.email,
+          contactNumber: data.contactNumber,
+          screenshot: data.screenshot,
         },
-      });
+        `Purchase: ${project.title} — ${data.name}`
+      );
       setIsSuccess(true);
+    } catch {
+      form.setError('root', {
+        message: 'Failed to send payment details. Please try again.',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -329,6 +333,10 @@ export function PurchaseDialog({ open, onOpenChange, project }: Props) {
                     </FormItem>
                   )}
                 />
+
+                {form.formState.errors.root && (
+                  <div className="text-sm text-destructive">{form.formState.errors.root.message}</div>
+                )}
 
                 <button
                   type="submit"

@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { submitSiteForm } from '@/lib/submitForm';
 
 // Validation schema with security best practices
 const contactFormSchema = z.object({
@@ -36,7 +37,13 @@ const contactFormSchema = z.object({
     .email({ message: 'Please enter a valid email address' })
     .max(255, { message: 'Email must be less than 255 characters' }),
   projectType: z.enum(
-    ['indicator-purchase', 'custom-mt4-ea', 'custom-mt5-ea', 'other'],
+    [
+      'indicator-purchase',
+      'custom-indicator-build',
+      'custom-mt4-ea',
+      'custom-mt5-ea',
+      'other',
+    ],
     {
       required_error: 'Please select an inquiry type',
     }
@@ -72,24 +79,16 @@ export function ContactForm() {
     setIsSubmitting(true);
     
     try {
-      // Formspree integration - replace YOUR_FORM_ID with your actual form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      await submitSiteForm(
+        {
+          form: 'Contact',
           name: data.name,
           email: data.email,
-          projectType: data.projectType,
+          inquiryType: data.projectType,
           message: data.message,
-          _subject: `New ${data.projectType} inquiry from ${data.name}`,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
+        },
+        `Contact: ${data.projectType} — ${data.name}`
+      );
 
       // Show success state
       setIsSuccess(true);
@@ -196,6 +195,9 @@ export function ContactForm() {
                 <SelectContent className="bg-popover z-50">
                   <SelectItem value="indicator-purchase" className="font-light">
                     Indicator Purchase
+                  </SelectItem>
+                  <SelectItem value="custom-indicator-build" className="font-light">
+                    Custom Indicator Build
                   </SelectItem>
                   <SelectItem value="custom-mt4-ea" className="font-light">
                     Custom MT4 EA Build

@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { submitSiteForm } from '@/lib/submitForm';
 
 const schema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100),
@@ -59,12 +60,24 @@ export function CustomIndicatorForm() {
   const onSubmit = async (data: Values) => {
     setIsSubmitting(true);
     try {
-      // Demo success — wire Formspree/backend when ready
-      await new Promise((r) => setTimeout(r, 900));
-      console.info('Custom indicator request', data);
+      await submitSiteForm(
+        {
+          form: 'Custom Indicator Request',
+          name: data.name,
+          email: data.email,
+          platform: data.platform,
+          markets: data.markets,
+          brief: data.brief,
+        },
+        `Custom indicator request — ${data.name}`
+      );
       setIsSuccess(true);
       form.reset();
       setTimeout(() => setIsSuccess(false), 5000);
+    } catch {
+      form.setError('root', {
+        message: 'Failed to send request. Please try again.',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -172,6 +185,10 @@ export function CustomIndicatorForm() {
             </FormItem>
           )}
         />
+
+        {form.formState.errors.root && (
+          <div className="text-sm text-destructive">{form.formState.errors.root.message}</div>
+        )}
 
         <Button
           type="submit"

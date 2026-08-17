@@ -5,21 +5,18 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { SkipToContent } from "@/components/ui/SkipToContent";
-import { LoadingFallback } from "@/components/ui/LoadingFallback";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AnimatePresence } from "framer-motion";
-import { lazy, Suspense } from "react";
 
 import Index from "./pages/Index";
-
-const Portfolio = lazy(() => import("./pages/Portfolio"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Automation = lazy(() => import("./pages/Automation"));
-const Research = lazy(() => import("./pages/Research"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Portfolio from "./pages/Portfolio";
+import ProjectDetail from "./pages/ProjectDetail";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Automation from "./pages/Automation";
+import Research from "./pages/Research";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +24,7 @@ function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="sync" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route
           path="/"
@@ -107,9 +104,7 @@ const App = () => (
         <BrowserRouter>
           <SkipToContent />
           <Layout>
-            <Suspense fallback={<LoadingFallback />}>
-              <AnimatedRoutes />
-            </Suspense>
+            <AnimatedRoutes />
           </Layout>
         </BrowserRouter>
       </TooltipProvider>

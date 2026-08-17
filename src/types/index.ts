@@ -91,6 +91,7 @@ export interface ContactSubmission {
   email: string;
   projectType:
     | 'indicator-purchase'
+    | 'custom-indicator-build'
     | 'custom-mt4-ea'
     | 'custom-mt5-ea'
     | 'other';

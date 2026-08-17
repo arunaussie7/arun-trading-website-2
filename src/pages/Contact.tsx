@@ -1,4 +1,4 @@
-import { Mail, MapPin, ExternalLink, Instagram, Linkedin } from 'lucide-react';
+import { Mail, MapPin, ExternalLink, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { DiscordIcon } from '@/components/icons/DiscordIcon';
 import { photographerInfo } from '@/data/photographer';
 import { ContactForm } from '@/components/forms/ContactForm';
@@ -31,6 +31,12 @@ const items = [
     label: 'LinkedIn',
     value: 'in/arun-chitragar',
     href: photographerInfo.socialLinks.linkedin,
+  },
+  {
+    icon: Youtube,
+    label: 'YouTube',
+    value: '@Arun.chitragar',
+    href: photographerInfo.socialLinks.youtube,
   },
   {
     icon: MapPin,
@@ -113,6 +119,7 @@ export default function Contact() {
                 <div className="lab-label">OPEN TO</div>
                 <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                   <li>· Indicator Purchase</li>
+                  <li>· Custom Indicator Builds</li>
                   <li>· Custom MT4 Expert Advisor Builds</li>
                   <li>· Custom MT5 Expert Advisor Builds</li>
                   <li>· TradingView & MetaTrader Tool Development</li>
