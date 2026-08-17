@@ -32,8 +32,8 @@ export const defaultBRollItems: BRollItem[] = [
     id: '2',
     title: 'Physical Standard & Mindset',
     category: 'DISCIPLINE',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
+    type: 'video',
+    src: '/videos/Physical%20standard%20and%20mindset.mov',
   },
   {
     id: '3',

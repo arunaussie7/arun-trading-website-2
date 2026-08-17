@@ -40,7 +40,15 @@ export function LabBackground({
       violet?: boolean;
     };
 
+    type Candle = {
+      o: number;
+      h: number;
+      l: number;
+      c: number;
+    };
+
     let dots: Dot[] = [];
+    let candles: Candle[] = [];
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -62,11 +70,62 @@ export function LabBackground({
         isNode: i % 7 === 0,
         violet: i % 11 === 0,
       }));
+
+      // Seeded-looking walk so candles feel like a real chart, not random noise
+      candles = [];
+      let price = 0.52;
+      const n = Math.max(28, Math.floor(w / 22));
+      for (let i = 0; i < n; i++) {
+        const drift = Math.sin(i * 0.18) * 0.012 + (Math.random() - 0.48) * 0.035;
+        const open = price;
+        const close = Math.min(0.92, Math.max(0.12, open + drift));
+        const high = Math.max(open, close) + Math.random() * 0.03;
+        const low = Math.min(open, close) - Math.random() * 0.03;
+        candles.push({ o: open, h: Math.min(0.96, high), l: Math.max(0.06, low), c: close });
+        price = close;
+      }
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       time += 0.008;
+
+      // Soft candlestick tape — hero only, kept faint so copy stays readable
+      if (variant === 'hero' && candles.length) {
+        const chartTop = h * 0.22;
+        const chartH = h * 0.58;
+        const chartW = w * 0.72;
+        const gap = 3;
+        const slot = chartW / candles.length;
+        const bodyW = Math.max(3, Math.min(8, slot - gap));
+        const drift = Math.sin(time * 0.35) * 5;
+
+        candles.forEach((c, i) => {
+          const t = i / (candles.length - 1);
+          const x = i * slot + slot / 2;
+          const yO = chartTop + (1 - c.o) * chartH + drift;
+          const yC = chartTop + (1 - c.c) * chartH + drift;
+          const yH = chartTop + (1 - c.h) * chartH + drift;
+          const yL = chartTop + (1 - c.l) * chartH + drift;
+          const bull = c.c >= c.o;
+          const fade = Math.sin(t * Math.PI) * (1 - t * 0.55);
+          const alpha = 0.2 * fade;
+          if (alpha < 0.03) return;
+          const color = bull ? `rgba(18, 160, 82, ${alpha})` : `rgba(180, 58, 72, ${alpha})`;
+
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(x, yH);
+          ctx.lineTo(x, yL);
+          ctx.stroke();
+
+          const top = Math.min(yO, yC);
+          const bodyH = Math.max(2, Math.abs(yC - yO));
+          ctx.fillStyle = color;
+          ctx.fillRect(x - bodyW / 2, top, bodyW, bodyH);
+        });
+      }
 
       // Market waveforms only — no grid
       if (variant !== 'subtle') {
